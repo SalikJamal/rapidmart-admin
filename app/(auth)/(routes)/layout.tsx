@@ -1,4 +1,4 @@
-import { IReactChildren } from "@/lib/type"
+import { IReactChildren } from "@/lib/types"
 
 
 export default function AuthLayout({ children }: IReactChildren) {
