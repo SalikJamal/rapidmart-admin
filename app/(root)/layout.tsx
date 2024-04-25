@@ -15,11 +15,11 @@ export default async function SetupLayout({ children }: IReactChildren) {
         }
     })
 
-    if(store) redirect(`/dashboard/${store.id}`)
+    if(store) redirect(`/${store.id}`)
 
     return (
-        <div>
+        <>
             {children}
-        </div>
+        </>
     )
 }
