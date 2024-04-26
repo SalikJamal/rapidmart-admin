@@ -1,7 +1,8 @@
+import { redirect } from "next/navigation"
+import { auth } from "@clerk/nextjs/server"
+import Navbar from "@/components/navbar"
 import prismadb from "@/lib/prismadb"
 import { IReactChildren } from "@/lib/types"
-import { auth } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation"
 
 interface IDashboardLayoutProps extends IReactChildren {
     params: {
@@ -26,7 +27,7 @@ export default async function DashboardLayout({ children, params }: IDashboardLa
 
     return (
         <>
-            <div>This will be a Navbar</div>
+            <Navbar />
             {children}
         </>
     )
