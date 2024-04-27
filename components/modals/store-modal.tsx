@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 const formSchema = z.object({
-    name: z.string({ required_error: "Name is required" }).min(1, { message: "Name is required" })
+    name: z.string().min(1, { message: "Name is required" })
 })
 
 

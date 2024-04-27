@@ -21,7 +21,7 @@ import {
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 interface IStoreSwitcherProps extends PopoverTriggerProps {
-    items: Store[]
+    items: Store[];
 }
 
 

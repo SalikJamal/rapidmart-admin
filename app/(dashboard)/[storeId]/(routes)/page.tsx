@@ -2,8 +2,8 @@ import prismadb from "@/lib/prismadb"
 
 interface IDashboardPageProps {
     params: {
-        storeId: string
-    }
+        storeId: string;
+    };
 }
 
 

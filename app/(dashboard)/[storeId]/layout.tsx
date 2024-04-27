@@ -6,8 +6,8 @@ import { IReactChildren } from "@/lib/types"
 
 interface IDashboardLayoutProps extends IReactChildren {
     params: {
-        storeId: string
-    }
+        storeId: string;
+    };
 }
 
 
