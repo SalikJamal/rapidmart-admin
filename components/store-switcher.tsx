@@ -39,7 +39,7 @@ export default function StoreSwitcher({ className, items = [] }: IStoreSwitcherP
     }))
 
     const currentStore = formattedItems.find(item => item.id === params.storeId)
-    console.log(formattedItems)
+    
     const onStoreSelect = (store: { id: string, label: string }) => {
         setOpen(false)
         router.push(`/${store.id}`)
@@ -57,7 +57,7 @@ export default function StoreSwitcher({ className, items = [] }: IStoreSwitcherP
                     aria-label="Select a store"
                 >
                     <StoreIcon className="mr-2 size-4" />
-                    {currentStore?.label }
+                    {currentStore?.label}
                     <ChevronsUpDown className="ml-auto size-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
@@ -71,12 +71,13 @@ export default function StoreSwitcher({ className, items = [] }: IStoreSwitcherP
                             {formattedItems.map(store => (
                                 <CommandItem 
                                     className="text-sm"
+                                    value={store.id}
+                                    disabled={false}
                                     key={store.id} 
                                     onSelect={() => onStoreSelect(store)}
                                 >
-                                    <StoreIcon className="mr-2 size-4">
+                                    <StoreIcon className="mr-2 size-4" />
                                         {store.label}
-                                    </StoreIcon>
                                     <Check 
                                         className={cn(
                                             "ml-auto size-4", 
@@ -90,13 +91,14 @@ export default function StoreSwitcher({ className, items = [] }: IStoreSwitcherP
                     <CommandSeparator />
                     <CommandList>
                         <CommandGroup>
-                            <CommandItem 
+                            <CommandItem
+                                disabled={false}
                                 onSelect={() => { 
                                     setOpen(false); 
                                     storeModal.onOpen();
                                 }}
                             >
-                                <PlusCircle className="mr-2 size-4" />
+                                <PlusCircle className="mr-2 size-5" />
                                 Create Store
                             </CommandItem>
                         </CommandGroup>
