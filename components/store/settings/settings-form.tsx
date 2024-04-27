@@ -51,7 +51,8 @@ export default function SettingsForm({ initialData }: ISettingsFormProps) {
                 <Button
                     variant="destructive"
                     size="icon"
-                    onClick={() => {}}
+                    onClick={() => setOpen(true)}
+                    disabled={loading}
                 >
                     <Trash className="size-4" />
                 </Button>
