@@ -1,10 +1,13 @@
 "use client"
 
+import axios from "axios"
 import { useState } from "react"
 import * as z  from "zod"
 import { useForm } from "react-hook-form"
+import { useParams, useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Store } from "@prisma/client"
+import toast from "react-hot-toast"
 import { Trash } from "lucide-react"
 import Heading from "@/components/ui/heading"
 import { Button } from "@/components/ui/button"
@@ -35,13 +38,27 @@ export default function SettingsForm({ initialData }: ISettingsFormProps) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
 
+    const params = useParams()
+    const router = useRouter()
+
     const form = useForm<SettingsFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: initialData
     })
 
     const onSubmit = async (values: SettingsFormValues) => {
-        console.log(values)
+        try {
+
+            setLoading(true)
+            await axios.patch(`/api/stores/${params.storeId}`, values)
+            router.refresh()
+            toast.success("Store updated.")
+
+        } catch(err) {
+            toast.error("Something went wrong.")
+        } finally {
+            setLoading(false)
+        }
     }
     
     return (
