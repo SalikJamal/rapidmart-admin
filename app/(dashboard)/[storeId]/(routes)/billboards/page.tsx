@@ -1,27 +1,28 @@
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import prismadb from "@/lib/prismadb"
-import SettingsForm from "@/components/store/settings/settings-form"
+import BillboardClient from "@/components/store/billboards/client"
 
-interface ISettingsPageProps {
+
+interface IBillboardsPageProps {
     params: {
         storeId: string;
     };
 }
 
 
-export default async function SettingsPage({ params }: ISettingsPageProps) {
+export default async function BillboardsPage({ params }: IBillboardsPageProps) {
     
     const { userId } = auth()
     if(!userId) redirect("/sign-in")
     
-    const store = await prismadb.store.findFirst({ where: { id: params.storeId, userId }})
-    if(!store) redirect("/")
+    // const billboards = await prismadb.billboard.findFirst({ where: { storeId: params.storeId }})
+    // if(!billboards) redirect("/")
 
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <SettingsForm initialData={store} />
+                <BillboardClient />
             </div>
         </div>
     )
