@@ -18,7 +18,7 @@ export default function ImageUpload({ value, onChange, onRemove, disabled }: IIm
     
     const [isMounted, setIsMounted] = useState(false)
 
-    const onUpload = (result: any) => {
+    const onSuccess = (result: any) => {
         onChange(result.info.secure_url)
     }
 
@@ -52,7 +52,7 @@ export default function ImageUpload({ value, onChange, onRemove, disabled }: IIm
                     </div>
                 ))}
             </div>
-            <CldUploadWidget onUploadAdded={onUpload} uploadPreset="lesjtn3g">
+            <CldUploadWidget onSuccess={onSuccess} uploadPreset="lesjtn3g">
                 {({ open }) => {
                     const onClick = () => open()
                     return (

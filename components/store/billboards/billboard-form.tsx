@@ -22,7 +22,6 @@ import {
     FormMessage
 } from "@/components/ui/form"
 import AlertModal from "@/components/modals/alert-modal"
-import useOrigin from "@/hooks/useOrigin"
 import ImageUpload from "@/components/ui/image-upload"
 
 interface IBillboardFormProps {
@@ -44,7 +43,6 @@ export default function BillboardForm({ initialData }: IBillboardFormProps) {
 
     const params = useParams()
     const router = useRouter()
-    const origin = useOrigin()
 
     const title = initialData ? "Edit Billboard" : "Create Billboard"
     const description = initialData ? "Edit billboard" : "Add a new billboard"
