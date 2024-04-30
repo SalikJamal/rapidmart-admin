@@ -86,6 +86,7 @@ export default function BillboardForm({ initialData }: IBillboardFormProps) {
             }
 
             router.refresh()
+            router.push(`/${params.storeId}/billboards`)
             toast.success(toastMessage)
 
         } catch(err) {
