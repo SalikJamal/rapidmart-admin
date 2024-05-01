@@ -16,13 +16,19 @@ export default async function BillboardsPage({ params }: IBillboardsPageProps) {
     const { userId } = auth()
     if(!userId) redirect("/sign-in")
     
-    // const billboards = await prismadb.billboard.findFirst({ where: { storeId: params.storeId }})
-    // if(!billboards) redirect("/")
-
+    const billboards = await prismadb.billboard.findMany({ 
+        where: { 
+            storeId: params.storeId 
+        },
+        orderBy: {
+            createdAt: "desc"
+        }
+    })
+    
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <BillboardClient />
+                <BillboardClient data={billboards} />
             </div>
         </div>
     )
