@@ -5,10 +5,10 @@ import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
-import { Billboard } from "@prisma/client"
+import { IBillboardColumn } from "./columns"
 
 interface IBillboardClientProps {
-    data: Billboard[];
+    data: IBillboardColumn[];
 }
 
 
