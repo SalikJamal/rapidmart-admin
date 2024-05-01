@@ -5,7 +5,8 @@ import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
-import { IBillboardColumn } from "./columns"
+import { IBillboardColumn, billboardColumns } from "@/components/store/billboards/columns"
+import { DataTable } from "@/components/ui/data-table"
 
 interface IBillboardClientProps {
     data: IBillboardColumn[];
@@ -28,6 +29,8 @@ export default function BillboardClient({ data }: IBillboardClientProps) {
             </div>
 
             <Separator />
+
+            <DataTable data={data} columns={billboardColumns} searchKey="label" />
         </>
     )
 }

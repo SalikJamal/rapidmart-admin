@@ -9,7 +9,7 @@ export interface IBillboardColumn {
 }
 
 
-export const columns: ColumnDef<IBillboardColumn>[] = [
+export const billboardColumns: ColumnDef<IBillboardColumn>[] = [
   {
     accessorKey: "label",
     header: "Label"
