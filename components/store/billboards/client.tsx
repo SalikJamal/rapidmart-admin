@@ -5,7 +5,8 @@ import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
-import { IBillboardColumn, billboardColumns } from "@/components/store/billboards/columns"
+import { IBillboardColumn } from "@/lib/types"
+import { billboardColumns } from "@/components/store/billboards/columns"
 import { DataTable } from "@/components/ui/data-table"
 
 interface IBillboardClientProps {

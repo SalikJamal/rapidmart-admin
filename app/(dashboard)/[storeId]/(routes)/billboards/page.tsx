@@ -3,7 +3,7 @@ import { format } from "date-fns"
 import { redirect } from "next/navigation"
 import prismadb from "@/lib/prismadb"
 import BillboardClient from "@/components/store/billboards/client"
-import { IBillboardColumn } from "@/components/store/billboards/columns"
+import { IBillboardColumn } from "@/lib/types"
 
 
 interface IBillboardsPageProps {
