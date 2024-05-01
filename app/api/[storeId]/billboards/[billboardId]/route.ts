@@ -19,9 +19,6 @@ interface IGETParams {
 export async function GET(req: Request, { params }: IGETParams) {
     try {
 
-        const { userId } = auth()
-
-        if(!userId) return new NextResponse("Unauthenticated", { status: 401 })
         if(!params.billboardId) return new NextResponse("Billboard ID is required", { status: 400 })
 
         const billboard = await prismadb.billboard.findUnique({

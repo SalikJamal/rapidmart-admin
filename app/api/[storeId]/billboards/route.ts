@@ -49,9 +49,6 @@ export async function POST(req: Request, { params }: IParams) {
 export async function GET(req: Request, { params }: IParams) {
     try {
 
-        const { userId } = auth()
-        if(!userId) return new NextResponse("Unauthenticated", { status: 401 })
-
         const billboards = await prismadb.billboard.findMany({
             where: {
                 storeId: params.storeId
