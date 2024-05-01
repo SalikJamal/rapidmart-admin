@@ -45,7 +45,7 @@ export default function BillboardForm({ initialData }: IBillboardFormProps) {
     const router = useRouter()
 
     const title = initialData ? "Edit Billboard" : "Create Billboard"
-    const description = initialData ? "Edit billboard" : "Add a new billboard"
+    const description = initialData ? "Edit a billboard" : "Add a new billboard"
     const toastMessage = initialData ? "Billboard updated." : "Billboard created."
     const action = initialData ? "Save changes" : "Create"
 
@@ -63,7 +63,7 @@ export default function BillboardForm({ initialData }: IBillboardFormProps) {
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
             router.refresh()
-            router.push("/")
+            router.push(`/${params.storeId}/billboards`)
             toast.success("Billboard deleted.")
 
         } catch(err) {
