@@ -5,8 +5,6 @@ import { IBillboardColumn } from "@/lib/types"
 import CellAction from "@/components/store/billboards/cell-action"
 
 
-
-
 export const billboardColumns: ColumnDef<IBillboardColumn>[] = [
   {
     accessorKey: "label",
