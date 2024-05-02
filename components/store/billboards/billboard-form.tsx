@@ -62,8 +62,8 @@ export default function BillboardForm({ initialData }: IBillboardFormProps) {
 
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
-            router.refresh()
             router.push(`/${params.storeId}/billboards`)
+            router.refresh()
             toast.success("Billboard deleted.")
 
         } catch(err) {
@@ -85,8 +85,8 @@ export default function BillboardForm({ initialData }: IBillboardFormProps) {
                 await axios.post(`/api/${params.storeId}/billboards`, values)
             }
 
-            router.refresh()
             router.push(`/${params.storeId}/billboards`)
+            router.refresh()
             toast.success(toastMessage)
 
         } catch(err) {
