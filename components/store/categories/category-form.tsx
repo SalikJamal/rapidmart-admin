@@ -22,7 +22,6 @@ import {
     FormMessage
 } from "@/components/ui/form"
 import AlertModal from "@/components/modals/alert-modal"
-import ImageUpload from "@/components/ui/image-upload"
 
 interface ICategoryFormProps {
     initialData: Category | null;
@@ -31,6 +30,7 @@ interface ICategoryFormProps {
 type CategoryFormValues = z.infer<typeof formSchema>
 const formSchema = z.object({
     name: z.string().min(1, { message: "Name is required" }),
+    billboardId: z.string().min(1)
 })
 
 
@@ -52,6 +52,7 @@ export default function CategoryForm({ initialData }: ICategoryFormProps) {
         resolver: zodResolver(formSchema),
         defaultValues: initialData || {
             name: "",
+            billboardId: ""
         }
     })
 
@@ -59,7 +60,7 @@ export default function CategoryForm({ initialData }: ICategoryFormProps) {
         try {
 
             setLoading(true)
-            await axios.delete(`/api/${params.storeId}/categories/${params.billboardId}`)
+            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`)
             router.push(`/${params.storeId}/categories`)
             router.refresh()
             toast.success("Category deleted.")
@@ -78,7 +79,7 @@ export default function CategoryForm({ initialData }: ICategoryFormProps) {
             setLoading(true)
 
             if(initialData) {
-                await axios.patch(`/api/${params.storeId}/categories/${params.billboardId}`, values)
+                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, values)
             } else {
                 await axios.post(`/api/${params.storeId}/categories`, values)
             }
@@ -127,10 +128,10 @@ export default function CategoryForm({ initialData }: ICategoryFormProps) {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Label</FormLabel>
+                                    <FormLabel>Name</FormLabel>
                                     <FormControl>
                                         <Input
-                                            placeholder="Billboard label"
+                                            placeholder="Category name"
                                             disabled={loading}
                                             {...field}
                                         />
