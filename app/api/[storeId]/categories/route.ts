@@ -1,6 +1,6 @@
-import prismadb from "@/lib/prismadb"
 import { auth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
+import prismadb from "@/lib/prismadb"
 
 interface IParams {
     params: {
@@ -17,7 +17,7 @@ export async function POST(req: Request, { params }: IParams) {
 
         if(!userId) return new NextResponse("Unauthenticated", { status: 401 })
         if(!name) return new NextResponse("Category Name is required", { status: 400 })
-        if(!billboardId) return new NextResponse("Billboard URL is required", { status: 400 })
+        if(!billboardId) return new NextResponse("Billboard ID is required", { status: 400 })
         if(!params.storeId) return new NextResponse("Store ID is required", { status: 400 })
 
         const storeByUserId = await prismadb.store.findFirst({
@@ -49,16 +49,16 @@ export async function POST(req: Request, { params }: IParams) {
 export async function GET(req: Request, { params }: IParams) {
     try {
 
-        const billboards = await prismadb.billboard.findMany({
+        const categories = await prismadb.category.findMany({
             where: {
-                storeId: params.storeId
+                storeId: params.storeId,
             }
         })
 
-        return NextResponse.json(billboards, { status: 200 })
+        return NextResponse.json(categories, { status: 200 })
 
     } catch(err) {
-        console.log(`[BILLBOARD_GET] \n, ${err}`)
+        console.log(`[CATEGORY_GET] \n, ${err}`)
         return new NextResponse("Internal Error", { status: 500 })
     }
 }
