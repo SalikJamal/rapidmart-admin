@@ -38,7 +38,7 @@ interface ICategoryFormProps {
 type CategoryFormValues = z.infer<typeof formSchema>
 const formSchema = z.object({
     name: z.string().min(1, { message: "Name is required" }),
-    billboardId: z.string().min(1)
+    billboardId: z.string().min(1, { message: "Billboard is required" })
 })
 
 
@@ -172,7 +172,7 @@ export default function CategoryForm({ initialData, billboards }: ICategoryFormP
                                             {billboards.map(billboard => (
                                                 <SelectItem 
                                                     key={billboard.id} 
-                                                    value={billboard.label}
+                                                    value={billboard.id}
                                                 >
                                                     {billboard.label}
                                                 </SelectItem>

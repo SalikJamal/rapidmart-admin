@@ -20,7 +20,7 @@ export default async function CategoriesPage({ params }: ICategoriesPageProps) {
     
     const categories = await prismadb.category.findMany({ 
         where: { 
-            storeId: params.storeId 
+            storeId: params.storeId
         },
         include: {
             billboard: true
