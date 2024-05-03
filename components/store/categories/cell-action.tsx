@@ -38,12 +38,12 @@ export default function CellAction({ data }: ICellActionProps) {
         try {
 
             setLoading(true)
-            await axios.delete(`/api/${params.storeId}/billboards/${data.id}`)
+            await axios.delete(`/api/${params.storeId}/categories/${data.id}`)
             router.refresh()
             toast.success("Category deleted.")
 
         } catch(err) {
-            toast.error("Something went wrong.")
+            toast.error("Make sure you removed all products using this category first.")
         } finally {
             setLoading(false)
             setOpen(false)
