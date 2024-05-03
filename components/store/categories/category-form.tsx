@@ -74,7 +74,7 @@ export default function CategoryForm({ initialData, billboards }: ICategoryFormP
             toast.success("Category deleted.")
 
         } catch(err) {
-            toast.error("Something went wrong.")
+            toast.error("Make sure you removed all products using this category first.")
         } finally {
             setLoading(false)
             setOpen(false)
