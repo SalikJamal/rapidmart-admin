@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import Heading from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { ISizeColumn } from "@/lib/types"
-import { billboardColumns } from "@/components/store/sizes/columns"
+import { sizeColumns } from "@/components/store/sizes/columns"
 import { DataTable } from "@/components/ui/data-table"
 import APIList from "@/components/ui/api-list"
 
@@ -23,8 +23,8 @@ export default function SizeClient({ data }: ISizeClientProps) {
     return (
         <>
             <div className="flex items-center justify-between">
-                <Heading title={`Billboards (${data.length})`} description="Manage billboards for your store" />
-                <Button onClick={() => router.push(`/${params.storeId}/billboards/new`)}>
+                <Heading title={`Sizes (${data.length})`} description="Manage sizes for your store" />
+                <Button onClick={() => router.push(`/${params.storeId}/sizes/new`)}>
                     <Plus className="mr-2 size-4" />
                     Add New
                 </Button>
@@ -32,12 +32,12 @@ export default function SizeClient({ data }: ISizeClientProps) {
 
             <Separator />
 
-            <DataTable data={data} columns={billboardColumns} searchKey="label" />
-            <Heading title="API" description="API calls for Billboards" />
+            <DataTable data={data} columns={sizeColumns} searchKey="label" />
+            <Heading title="API" description="API calls for Sizes" />
 
             <Separator />
             
-            <APIList entityName="billboards" entityIdName="billboardId" />
+            <APIList entityName="sizes" entityIdName="sizeId" />
         </>
     )
 }

@@ -1,14 +1,18 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { IBillboardColumn } from "@/lib/types"
+import { ISizeColumn } from "@/lib/types"
 import CellAction from "@/components/store/billboards/cell-action"
 
 
-export const sizeColumns: ColumnDef<IBillboardColumn>[] = [
+export const sizeColumns: ColumnDef<ISizeColumn>[] = [
   {
-    accessorKey: "label",
-    header: "Label"
+    accessorKey: "name",
+    header: "Name"
+  },
+  {
+    accessorKey: "value",
+    header: "Value"
   },
   {
     accessorKey: "createdAt",
