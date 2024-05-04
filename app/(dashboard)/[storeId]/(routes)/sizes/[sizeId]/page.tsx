@@ -1,25 +1,25 @@
-import BillboardForm from "@/components/store/billboards/billboard-form"
+import SizeForm from "@/components/store/sizes/size-form"
 import prismadb from "@/lib/prismadb"
 
-interface IBillboardPageProps {
+interface ISizePageProps {
     params: {
-        billboardId: string;
+        sizeId: string;
     };
 }
 
 
-export default async function BillboardPage({ params }: IBillboardPageProps) {
+export default async function SizePage({ params }: ISizePageProps) {
     
-    const billboard = await prismadb.billboard.findUnique({
+    const size = await prismadb.size.findUnique({
         where: {
-            id: params.billboardId
+            id: params.sizeId
         }
     })
 
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <BillboardForm initialData={billboard} />
+                <SizeForm initialData={size} />
             </div>
         </div>
     )

@@ -32,7 +32,7 @@ export default function SizeClient({ data }: ISizeClientProps) {
 
             <Separator />
 
-            <DataTable data={data} columns={sizeColumns} searchKey="label" />
+            <DataTable data={data} columns={sizeColumns} searchKey="name" />
             <Heading title="API" description="API calls for Sizes" />
 
             <Separator />
