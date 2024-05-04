@@ -16,3 +16,11 @@ export interface ICategoryColumn {
     billboardLabel: string;
     createdAt: string;
 }
+
+
+export interface ISizeColumn {
+    id: string;
+    name: string;
+    value: string;
+    createdAt: string;
+}
