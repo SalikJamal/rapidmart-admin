@@ -2,23 +2,23 @@ import { auth } from "@clerk/nextjs/server"
 import { format } from "date-fns"
 import { redirect } from "next/navigation"
 import prismadb from "@/lib/prismadb"
-import SizeClient from "@/components/store/sizes/client"
-import { ISizeColumn } from "@/lib/types"
+import ColorClient from "@/components/store/colors/client"
+import { IColorColum } from "@/lib/types"
 
 
-interface ISizesPageProps {
+interface IColorsPageProps {
     params: {
         storeId: string;
     };
 }
 
 
-export default async function SizesPage({ params }: ISizesPageProps) {
+export default async function ColorsPage({ params }: IColorsPageProps) {
     
     const { userId } = auth()
     if(!userId) redirect("/sign-in")
     
-    const sizes = await prismadb.size.findMany({ 
+    const colors = await prismadb.color.findMany({ 
         where: { 
             storeId: params.storeId 
         },
@@ -27,17 +27,17 @@ export default async function SizesPage({ params }: ISizesPageProps) {
         }
     })
 
-    const formattedSizes: ISizeColumn[] = sizes.map(size => ({
-        id: size.id,
-        name: size.name,
-        value: size.value,
-        createdAt: format(size.createdAt, "MMMM do, yyyy")
+    const formattedColors: IColorColum[] = colors.map(color => ({
+        id: color.id,
+        name: color.name,
+        value: color.value,
+        createdAt: format(color.createdAt, "MMMM do, yyyy")
     }))
     
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <SizeClient data={formattedSizes} />
+                <ColorClient data={formattedColors} />
             </div>
         </div>
     )
