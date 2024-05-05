@@ -30,7 +30,9 @@ interface IColorFormProps {
 type ColorFormValues = z.infer<typeof formSchema>
 const formSchema = z.object({
     name: z.string().min(1, { message: "Name is required" }),
-    value: z.string().min(1, { message: "Value is required" })
+    value: z.string()
+            .min(4, { message: "Value must be more than four characters" })
+            .regex(/^#/, { message: "Value must be a valid hex code "})
 })
 
 
@@ -147,11 +149,14 @@ export default function ColorForm({ initialData }: IColorFormProps) {
                                 <FormItem>
                                     <FormLabel>Value</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder="Color value"
-                                            disabled={loading}
-                                            {...field}
-                                        />
+                                        <div className="flex items-center gap-x-4">
+                                            <Input
+                                                placeholder="Color value"
+                                                disabled={loading}
+                                                {...field}
+                                            />
+                                            <div className="border border-gray-300 p-4 rounded-full" style={{ backgroundColor: field.value }} />
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

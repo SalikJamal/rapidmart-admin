@@ -12,7 +12,13 @@ export const colorColumns: ColumnDef<IColorColum>[] = [
   },
   {
     accessorKey: "value",
-    header: "Value"
+    header: "Value",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-x-2">
+        {row.original.value}
+        <div className="size-6 rounded-full border" style={{ backgroundColor: row.original.value }} />
+      </div>
+    )
   },
   {
     accessorKey: "createdAt",
