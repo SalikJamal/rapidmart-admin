@@ -10,7 +10,7 @@ interface IColorPageProps {
 
 export default async function ColorPage({ params }: IColorPageProps) {
     
-    const size = await prismadb.size.findUnique({
+    const color = await prismadb.color.findUnique({
         where: {
             id: params.colorId
         }
@@ -19,7 +19,7 @@ export default async function ColorPage({ params }: IColorPageProps) {
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <ColorForm initialData={size} />
+                <ColorForm initialData={color} />
             </div>
         </div>
     )
