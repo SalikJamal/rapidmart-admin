@@ -24,3 +24,5 @@ export interface ISizeColumn {
     value: string;
     createdAt: string;
 }
+
+export interface IColorColum extends ISizeColumn {}
