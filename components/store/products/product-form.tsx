@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { 
     Form, 
     FormControl, 
+    FormDescription, 
     FormField, 
     FormItem, 
     FormLabel, 
@@ -30,6 +31,7 @@ import {
 } from "@/components/ui/select"
 import AlertModal from "@/components/modals/alert-modal"
 import ImageUpload from "@/components/ui/image-upload"
+import { Checkbox } from "@/components/ui/checkbox"
 
 interface IProductFormProps {
     initialData: Product & { images: Image[]; } | null;
@@ -92,7 +94,7 @@ export default function ProductForm({ initialData, categories, colors, sizes }: 
             toast.success("Product deleted.")
 
         } catch(err) {
-            toast.error("Make sure you removed all billboards using this product first.")
+            toast.error("Something went wrong.")
         } finally {
             setLoading(false)
             setOpen(false)
@@ -311,6 +313,44 @@ export default function ProductForm({ initialData, categories, colors, sizes }: 
                                 </FormItem>
                             )}
                         />
+
+                        <FormField 
+                            control={form.control}
+                            name="isFeatured"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                    <FormControl>
+                                        <Checkbox 
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>Featured</FormLabel>
+                                        <FormDescription>This product will appear on the home page.</FormDescription>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField 
+                            control={form.control}
+                            name="isArchived"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                                    <FormControl>
+                                        <Checkbox 
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>Archived</FormLabel>
+                                        <FormDescription>This product will will not appear anywhere in the store.</FormDescription>
+                                    </div>
+                                </FormItem>
+                            )}
+                        />  
                     </div>
                     <Button 
                         type="submit" 
