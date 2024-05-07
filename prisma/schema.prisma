@@ -85,7 +85,7 @@ model Product {
   id          String @id @default(uuid())
   name        String
   price       Decimal
-  isFeatuerd  Boolean @default(false)
+  isFeatured  Boolean @default(false)
   isArchived  Boolean @default(false)
   storeId     String
   store       Store @relation("StoreToProduct", fields: [storeId], references: [id])
