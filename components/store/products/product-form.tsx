@@ -6,7 +6,7 @@ import * as z  from "zod"
 import { useForm } from "react-hook-form"
 import { useParams, useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Image, Product } from "@prisma/client"
+import { Color, Image, Product, Category, Size } from "@prisma/client"
 import toast from "react-hot-toast"
 import { Trash } from "lucide-react"
 import Heading from "@/components/ui/heading"
@@ -21,11 +21,21 @@ import {
     FormLabel, 
     FormMessage
 } from "@/components/ui/form"
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+} from "@/components/ui/select"
 import AlertModal from "@/components/modals/alert-modal"
 import ImageUpload from "@/components/ui/image-upload"
 
 interface IProductFormProps {
     initialData: Product & { images: Image[]; } | null;
+    categories: Category[];
+    colors: Color[];
+    sizes: Size[];
 }
 
 type ProductFormValues = z.infer<typeof formSchema>
@@ -42,7 +52,7 @@ const formSchema = z.object({
 
 
 
-export default function ProductForm({ initialData }: IProductFormProps) {
+export default function ProductForm({ initialData, categories, colors, sizes }: IProductFormProps) {
     
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -189,6 +199,114 @@ export default function ProductForm({ initialData }: IProductFormProps) {
                                             {...field}
                                         />
                                     </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        
+                        <FormField 
+                            control={form.control}
+                            name="categoryId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Category</FormLabel>
+                                    <Select 
+                                        value={field.value}
+                                        onValueChange={field.onChange}
+                                        defaultValue={field.value}
+                                        disabled={loading}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue
+                                                    placeholder="Select a category"
+                                                    defaultValue={field.value}
+                                                />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {categories.map(category => (
+                                                <SelectItem 
+                                                    key={category.id} 
+                                                    value={category.id}
+                                                >
+                                                    {category.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField 
+                            control={form.control}
+                            name="sizeId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Size</FormLabel>
+                                    <Select 
+                                        value={field.value}
+                                        onValueChange={field.onChange}
+                                        defaultValue={field.value}
+                                        disabled={loading}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue
+                                                    placeholder="Select a size"
+                                                    defaultValue={field.value}
+                                                />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {sizes.map(size => (
+                                                <SelectItem 
+                                                    key={size.id} 
+                                                    value={size.id}
+                                                >
+                                                    {size.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField 
+                            control={form.control}
+                            name="colorId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Colors</FormLabel>
+                                    <Select 
+                                        value={field.value}
+                                        onValueChange={field.onChange}
+                                        defaultValue={field.value}
+                                        disabled={loading}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue
+                                                    placeholder="Select a color"
+                                                    defaultValue={field.value}
+                                                />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {colors.map(color => (
+                                                <SelectItem 
+                                                    key={color.id} 
+                                                    value={color.id}
+                                                >   
+                                                    {color.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                     <FormMessage />
                                 </FormItem>
                             )}
