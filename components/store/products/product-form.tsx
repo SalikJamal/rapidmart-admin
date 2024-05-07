@@ -6,7 +6,7 @@ import * as z  from "zod"
 import { useForm } from "react-hook-form"
 import { useParams, useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Product } from "@prisma/client"
+import { Image, Product } from "@prisma/client"
 import toast from "react-hot-toast"
 import { Trash } from "lucide-react"
 import Heading from "@/components/ui/heading"
@@ -25,13 +25,19 @@ import AlertModal from "@/components/modals/alert-modal"
 import ImageUpload from "@/components/ui/image-upload"
 
 interface IProductFormProps {
-    initialData: Product | null;
+    initialData: Product & { images: Image[]; } | null;
 }
 
 type ProductFormValues = z.infer<typeof formSchema>
 const formSchema = z.object({
     name: z.string().min(1, { message: "Name is required" }),
-    imageURL: z.string().min(1, { message: "Image URL is required" })
+    images: z.object({ url: z.string() }).array(),
+    price: z.coerce.number().min(0, { message: "Price must be a more than 0" }),
+    categoryId: z.string().min(1, { message: "Category is required" }),
+    colorId: z.string().min(1, { message: "Color is required" }),
+    sizeId: z.string().min(1, { message: "Size is required" }),
+    isFeatured: z.boolean().default(false).optional(),
+    isArchived: z.boolean().default(false).optional()
 })
 
 
@@ -51,9 +57,18 @@ export default function ProductForm({ initialData }: IProductFormProps) {
 
     const form = useForm<ProductFormValues>({
         resolver: zodResolver(formSchema),
-        defaultValues: initialData || {
+        defaultValues: initialData ? {
+            ...initialData,
+            price: parseFloat(String(initialData.price))
+        } : {
             name: "",
-            imageURL: ""
+            images: [],
+            price: 0,
+            categoryId: "",
+            colorId: "",
+            sizeId: "",
+            isFeatured: false,
+            isArchived: false
         }
     })
 
@@ -125,16 +140,16 @@ export default function ProductForm({ initialData }: IProductFormProps) {
                 <form className="space-y-8 w-full" onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField 
                         control={form.control}
-                        name="imageURL"
+                        name="images"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Product Image</FormLabel>
+                                <FormLabel>Images</FormLabel>
                                 <FormControl>
                                     <ImageUpload 
-                                        value={field.value ? [field.value] : []}
+                                        value={field.value.map(image => image.url)}
                                         disabled={loading}
-                                        onChange={url => field.onChange(url)}
-                                        onRemove={() => field.onChange("")}
+                                        onChange={url => field.onChange([...field.value, { url }])}
+                                        onRemove={url => field.onChange([...field.value.filter(current => current.url !== url)])}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -151,6 +166,25 @@ export default function ProductForm({ initialData }: IProductFormProps) {
                                     <FormControl>
                                         <Input
                                             placeholder="Product name"
+                                            disabled={loading}
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField 
+                            control={form.control}
+                            name="price"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Price</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="number"
+                                            placeholder="9.99"
                                             disabled={loading}
                                             {...field}
                                         />

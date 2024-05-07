@@ -46,13 +46,14 @@ export default function ImageUpload({ value, onChange, onRemove, disabled }: IIm
                         <Image
                             className="object-cover"
                             fill
+                            sizes="100%"
                             alt="Image"
                             src={url}
                         />
                     </div>
                 ))}
             </div>
-            <CldUploadWidget onSuccess={onSuccess} uploadPreset="lesjtn3g">
+            <CldUploadWidget onUpload={onSuccess} uploadPreset="lesjtn3g">
                 {({ open }) => {
                     const onClick = () => open()
                     return (

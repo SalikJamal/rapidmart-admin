@@ -26,8 +26,7 @@ export default async function ProductsPage({ params }: IProductsPageProps) {
         include: {
             category: true,
             size: true,
-            color: true,
-            images: true
+            color: true
         },
         orderBy: {
             createdAt: "desc"

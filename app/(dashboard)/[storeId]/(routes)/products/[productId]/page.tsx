@@ -13,6 +13,9 @@ export default async function ProductPage({ params }: IProductPageProps) {
     const product = await prismadb.product.findUnique({
         where: {
             id: params.productId
+        },
+        include: {
+            images: true
         }
     })
 
