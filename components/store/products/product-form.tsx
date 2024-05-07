@@ -44,7 +44,7 @@ export default function ProductForm({ initialData }: IProductFormProps) {
     const params = useParams()
     const router = useRouter()
 
-    const title = initialData ? "Edit Product" : "Create a Product"
+    const title = initialData ? "Edit Product" : "Create Product"
     const description = initialData ? "Edit a product" : "Add a new product"
     const toastMessage = initialData ? "Product updated." : "Product created."
     const action = initialData ? "Save changes" : "Create"

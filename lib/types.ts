@@ -32,5 +32,11 @@ export interface IColorColum extends ISizeColumn {}
 export interface IProductColumn {
     id: string;
     name: string;
+    price: string;
+    isFeatured: boolean;
+    isArchived: boolean;
+    category: string;
+    size: string;
+    color: string;
     createdAt: string;
 }

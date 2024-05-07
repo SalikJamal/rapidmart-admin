@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import prismadb from "@/lib/prismadb"
 import ProductClient from "@/components/store/products/client"
 import { IProductColumn } from "@/lib/types"
+import { formatter } from "@/lib/utils"
 
 
 interface IProductsPageProps {
@@ -22,6 +23,12 @@ export default async function ProductsPage({ params }: IProductsPageProps) {
         where: { 
             storeId: params.storeId 
         },
+        include: {
+            category: true,
+            size: true,
+            color: true,
+            images: true
+        },
         orderBy: {
             createdAt: "desc"
         }
@@ -30,6 +37,12 @@ export default async function ProductsPage({ params }: IProductsPageProps) {
     const formattedProducts: IProductColumn[] = products.map(product => ({
         id: product.id,
         name: product.name,
+        price: formatter.format(product.price.toNumber()),
+        isFeatured: product.isFeatuerd,
+        isArchived: product.isArchived,
+        category: product.category.name,
+        size: product.size.name,
+        color: product.color.value,
         createdAt: format(product.createdAt, "MMMM do, yyyy")
     }))
     
