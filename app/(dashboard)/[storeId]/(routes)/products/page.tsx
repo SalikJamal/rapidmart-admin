@@ -37,7 +37,7 @@ export default async function ProductsPage({ params }: IProductsPageProps) {
         id: product.id,
         name: product.name,
         price: formatter.format(product.price.toNumber()),
-        isFeatured: product.isFeatuerd,
+        isFeatured: product.isFeatured,
         isArchived: product.isArchived,
         category: product.category.name,
         size: product.size.name,
