@@ -1,3 +1,4 @@
+
 export interface IReactChildren {
     children: React.ReactNode;
 }
@@ -26,3 +27,10 @@ export interface ISizeColumn {
 }
 
 export interface IColorColum extends ISizeColumn {}
+
+
+export interface IProductColumn {
+    id: string;
+    name: string;
+    createdAt: string;
+}
