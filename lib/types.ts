@@ -40,3 +40,14 @@ export interface IProductColumn {
     color: string;
     createdAt: string;
 }
+
+
+export interface IOrderColumn {
+    id: string;
+    phone: string;
+    address: string;
+    isPaid: boolean;
+    products: string;
+    totalPrice: string;
+    createdAt: string;
+}
