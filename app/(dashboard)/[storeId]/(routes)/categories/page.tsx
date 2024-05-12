@@ -5,7 +5,6 @@ import prismadb from "@/lib/prismadb"
 import { ICategoryColumn } from "@/lib/types"
 import CategoryClient from "@/components/store/categories/client"
 
-
 interface ICategoriesPageProps {
     params: {
         storeId: string;

@@ -5,7 +5,6 @@ import prismadb from "@/lib/prismadb"
 import BillboardClient from "@/components/store/billboards/client"
 import { IBillboardColumn } from "@/lib/types"
 
-
 interface IBillboardsPageProps {
     params: {
         storeId: string;
