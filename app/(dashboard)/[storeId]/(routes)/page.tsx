@@ -6,6 +6,7 @@ import { getTotalRevenue } from "@/actions/get-total-revenue"
 import { getSalesCount } from "@/actions/get-sales-count"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getStockCount } from "@/actions/get-stock-count"
+import Overview from "@/components/overview"
 
 interface IDashboardPageProps {
     params: {
@@ -28,9 +29,7 @@ export default async function DashboardPage({ params }: IDashboardPageProps) {
                 <div className="grid grid-cols-3 gap-4">
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">
-                                Total Revenue
-                            </CardTitle>
+                            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
                             <DollarSign className="size-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
@@ -41,9 +40,7 @@ export default async function DashboardPage({ params }: IDashboardPageProps) {
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">
-                                Sales
-                            </CardTitle>
+                            <CardTitle className="text-sm font-medium">Sales</CardTitle>
                             <CreditCard className="size-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
@@ -54,9 +51,7 @@ export default async function DashboardPage({ params }: IDashboardPageProps) {
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">
-                                Products In Stock
-                            </CardTitle>
+                            <CardTitle className="text-sm font-medium">Products In Stock</CardTitle>
                             <PackageIcon className="size-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
@@ -66,6 +61,14 @@ export default async function DashboardPage({ params }: IDashboardPageProps) {
                         </CardContent>
                     </Card>
                 </div>
+                <Card className="col-span-4">
+                    <CardHeader>
+                        <CardTitle>Overview</CardTitle>
+                        <CardContent className="pl-2">
+                            <Overview data={[]} />
+                        </CardContent>
+                    </CardHeader>
+                </Card>
             </div>
         </div>
     )
