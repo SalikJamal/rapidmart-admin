@@ -6,6 +6,7 @@ import { getTotalRevenue } from "@/actions/get-total-revenue"
 import { getSalesCount } from "@/actions/get-sales-count"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getStockCount } from "@/actions/get-stock-count"
+import { getGraphRevenue } from "@/actions/get-graph-revenue"
 import Overview from "@/components/overview"
 
 interface IDashboardPageProps {
@@ -20,6 +21,7 @@ export default async function DashboardPage({ params }: IDashboardPageProps) {
     const totalRevenue = await getTotalRevenue(params.storeId)
     const salesCount = await getSalesCount(params.storeId)
     const stockCount = await getStockCount(params.storeId)
+    const graphRevenue = await getGraphRevenue(params.storeId)
 
     return (
         <div className="flex-col">
@@ -65,7 +67,7 @@ export default async function DashboardPage({ params }: IDashboardPageProps) {
                     <CardHeader>
                         <CardTitle>Overview</CardTitle>
                         <CardContent className="pl-2">
-                            <Overview data={[]} />
+                            <Overview data={graphRevenue} />
                         </CardContent>
                     </CardHeader>
                 </Card>

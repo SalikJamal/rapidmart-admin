@@ -1,9 +1,16 @@
 "use client"
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
+import { 
+    Bar, 
+    BarChart, 
+    ResponsiveContainer, 
+    XAxis, 
+    YAxis 
+} from "recharts"
+import { IGraphData } from "@/lib/types"
 
 interface IOverviewProps {
-    data: any[];
+    data: IGraphData[];
 }
 
 
