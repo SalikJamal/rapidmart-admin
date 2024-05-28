@@ -3,6 +3,7 @@ import { formatter } from "@/lib/utils"
 import Heading from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { getTotalRevenue } from "@/actions/get-total-revenue"
+import { getSalesCount } from "@/actions/get-sales-count"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface IDashboardPageProps {
