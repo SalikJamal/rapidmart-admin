@@ -51,3 +51,9 @@ export interface IOrderColumn {
     totalPrice: string;
     createdAt: string;
 }
+
+
+export interface IGraphData {
+    name: string;
+    total: number;
+}
