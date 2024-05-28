@@ -70,10 +70,16 @@ export async function POST(req: Request, { params }: IParams) {
         line_items: lineItems,
         mode: "payment",
         billing_address_collection: "required",
-        success_url: ``,
         phone_number_collection: {
             enabled: true
-        }
+        },
+        metadata: {
+            orderId: order.id
+        },
+        success_url: `${process.env.STORE_FRONTEND_URL}/cart?success=1`,
+        cancel_url: `${process.env.STORE_FRONTEND_URL}/cart?canceled=1` 
     })
+
+    return NextResponse.json({ url: session.url }, { headers: corsHeaders })
 
 }
